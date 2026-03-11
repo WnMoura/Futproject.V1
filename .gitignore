@@ -1,0 +1,41 @@
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# PyCharm
+.idea/
+
+# OS-generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Databases
+*.sqlite3
+*.db
+
+# ML / Models / Data
+*.pkl
+
+# Random artifacts in root
+debug_pagina.html
+joblib/
+os/
+sqlite3/
+Futproject.V1/src/models/joblib
+Futproject.V1/src/models/os
+Futproject.V1/src/models/sqlite3
