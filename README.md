@@ -1,71 +1,84 @@
 # Futproject.V1 ⚽🤖
 
-Futproject.V1 is an end-to-end Machine Learning and Web Scraping pipeline designed to predict the outcomes of Brazilian football championship (Brasileirão) matches. The project automatically scrapes historical match data, processes the features, and trains a predictive model.
+Pipeline completo de **Machine Learning** e **Web Scraping** para prever resultados de partidas do **Brasileirão** (Série A).
+
+O projeto extrai dados históricos do [FBref](https://fbref.com/), processa features estatísticas, treina um modelo Random Forest e disponibiliza tudo em um **dashboard interativo**.
 
 ## Features ✨
 
-- **Web Scraping:** Automated extraction of match results and statistics from [FBref](https://fbref.com/) across multiple seasons (2024, 2025, 2026) using Selenium and BeautifulSoup.
-- **Data Storage:** Uses SQLite to store the scraped matches history locally (`db/database.sqlite`), ensuring no duplicates.
-- **Feature Engineering:** Prepares the data, cleaning and transforming the raw stats into trainable features for the ML model.
-- **Machine Learning Model:** Trains a Random Forest Classifier (`random_forest_brasileirao.pkl`) to predict match outcomes using Scikit-Learn.
-- **Automated Pipeline:** `main.py` runs the full process from extraction to model training in a single step.
+- **Web Scraping Automatizado** — Extração de resultados do Brasileirão (2024–2026) via Selenium + BeautifulSoup em modo headless
+- **Banco SQLite** — Armazenamento local sem duplicatas (`db/database.sqlite`)
+- **Feature Engineering** — Médias móveis de pontos, gols feitos/sofridos nos últimos 5 jogos
+- **Random Forest Classifier** — Predição multiclasse: vitória mandante, empate ou vitória visitante
+- **Pipeline Unificado** — Um único `main.py` executa scraping → features → treino
+- **Dashboard Streamlit** — Interface web com visão geral, execução do pipeline, métricas e predição
 
-## Project Structure 📁
+## Estrutura do Projeto 📁
 
 ```
 Futproject.V1/
-├── db/                   # Contains the SQLite database with match history
-├── src/                  # Source code for the project
-│   ├── scraper/          # Modules for web scraping (Selenium, parsers)
-│   ├── features/         # Data cleaning and feature engineering
-│   └── models/           # ML model training and prediction scripts
-├── main.py               # Main entry point to run the pipeline
-├── requirements.txt      # Python dependencies
-└── .gitignore            # Git ignore file
+├── dashboard.py              # Dashboard Streamlit (4 abas)
+├── main.py                   # Pipeline CLI unificado
+├── requirements.txt
+└── src/
+    ├── features/
+    │   └── feature_engineering.py
+    ├── models/
+    │   ├── predict.py
+    │   └── train.py
+    └── scraper/
+        ├── driver_factory.py
+        └── parser.py
 ```
 
-## Setup & Installation ⚙️
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/yourusername/Futproject.V1.git
-   cd Futproject.V1
-   ```
-
-2. **Create a virtual environment:**
-   ```bash
-   python -m venv .venv
-   source .venv/bin/activate  # On Linux/Mac
-   # OR
-   .venv\Scripts\activate     # On Windows
-   ```
-
-3. **Install dependencies:**
-   ```bash
-   pip install -r Futproject.V1/requirements.txt
-   ```
-
-4. **Webdriver:**
-   Ensure you have the appropriate WebDriver installed (e.g., ChromeDriver) compatible with your installed browser version for Selenium to work.
-
-## Usage 🚀
-
-To run the complete pipeline (Scraping -> Feature Engineering -> Model Training), simply execute:
+## Setup ⚙️
 
 ```bash
-python Futproject.V1/main.py
+git clone https://github.com/WnMoura/Futproject.V1.git
+cd Futproject.V1
+python -m venv .venv
+source .venv/bin/activate
+pip install -r Futproject.V1/requirements.txt
 ```
 
-This will output the progress of the scraping, save data to the local SQLite database, prepare the dataset, and output a trained machine learning model inside the `src/models/` directory.
+> **Requisito:** Google Chrome instalado (o ChromeDriver é gerenciado automaticamente).
 
-## Technologies Used 🛠️
+## Uso 🚀
 
-- **Python 3**
-- **Pandas & NumPy:** Data manipulation and analysis.
-- **Scikit-Learn:** Machine Learning model training.
-- **Selenium & BeautifulSoup4:** Web scraping and parsing.
-- **SQLite3:** Local database storage.
-- **Joblib:** Model serialization.
+### Pipeline via Terminal
 
-## License 📄
-This project is for educational and research purposes.
+```bash
+python Futproject.V1/main.py                  # Pipeline completo (scraping + treino)
+python Futproject.V1/main.py --skip-scraping  # Pula scraping, usa dados existentes
+python Futproject.V1/main.py --predict        # Predição interativa no terminal
+```
+
+### Dashboard Web
+
+```bash
+cd Futproject.V1
+streamlit run dashboard.py
+```
+
+Abra `http://localhost:8501` no navegador. O dashboard oferece:
+
+| Aba | Funcionalidade |
+|-----|---------------|
+| 🏠 Visão Geral | Total de jogos, última atualização, gráfico por temporada, últimos placares |
+| ⚙️ Pipeline | Botões para executar cada etapa ou o pipeline completo com log em tempo real |
+| 📊 Métricas | Acurácia, F1-Score por classe, matriz de confusão |
+| 🔮 Predição | Selecionar times via dropdown e ver probabilidades com gráfico |
+
+## Tecnologias 🛠️
+
+| Categoria | Tecnologia |
+|-----------|-----------|
+| Linguagem | Python 3.12 |
+| ML | Scikit-Learn, Joblib |
+| Dados | Pandas, NumPy, SQLite3 |
+| Scraping | Selenium, BeautifulSoup4, Undetected ChromeDriver |
+| Dashboard | Streamlit, Plotly |
+
+## Licença 📄
+
+Projeto para fins educacionais e de pesquisa.
