@@ -2,12 +2,10 @@ import undetected_chromedriver as uc
 
 
 def criar_driver():
-    print("Inicializando o Chrome em modo Headless...")
+    print("Inicializando o Chrome (Janela visível para evitar bloqueio)...")
     options = uc.ChromeOptions()
-    options.add_argument("--headless=new")
     options.add_argument("--disable-blink-features=AutomationControlled")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--window-size=1920,1080")
+    options.add_argument("--start-maximized")
     driver = uc.Chrome(options=options)
     return driver
 

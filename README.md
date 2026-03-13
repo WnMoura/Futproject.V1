@@ -6,7 +6,7 @@ O projeto extrai dados históricos do [FBref](https://fbref.com/), processa feat
 
 ## Features ✨
 
-- **Web Scraping Automatizado** — Extração de resultados do Brasileirão (2024–2026) via Selenium + BeautifulSoup em modo headless
+- **Web Scraping Automatizado** — Extração de resultados do Brasileirão (2024–2026) via Selenium + BeautifulSoup projetado para contornar proteções Cloudflare/FBref
 - **Banco SQLite** — Armazenamento local sem duplicatas (`db/database.sqlite`)
 - **Feature Engineering** — Médias móveis de pontos, gols feitos/sofridos nos últimos 5 jogos
 - **Random Forest Classifier** — Predição multiclasse: vitória mandante, empate ou vitória visitante
@@ -38,7 +38,7 @@ git clone https://github.com/WnMoura/Futproject.V1.git
 cd Futproject.V1
 python -m venv .venv
 source .venv/bin/activate
-pip install -r Futproject.V1/requirements.txt
+pip install -r requirements.txt
 ```
 
 > **Requisito:** Google Chrome instalado (o ChromeDriver é gerenciado automaticamente).
@@ -48,15 +48,14 @@ pip install -r Futproject.V1/requirements.txt
 ### Pipeline via Terminal
 
 ```bash
-python Futproject.V1/main.py                  # Pipeline completo (scraping + treino)
-python Futproject.V1/main.py --skip-scraping  # Pula scraping, usa dados existentes
-python Futproject.V1/main.py --predict        # Predição interativa no terminal
+python main.py                  # Pipeline completo (scraping + treino)
+python main.py --skip-scraping  # Pula scraping, usa dados existentes
+python main.py --predict        # Predição interativa no terminal
 ```
 
 ### Dashboard Web
 
 ```bash
-cd Futproject.V1
 streamlit run dashboard.py
 ```
 
