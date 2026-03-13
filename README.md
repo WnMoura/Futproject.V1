@@ -68,6 +68,24 @@ Abra `http://localhost:8501` no navegador. O dashboard oferece:
 | 📊 Métricas | Acurácia, F1-Score por classe, matriz de confusão |
 | 🔮 Predição | Selecionar times via dropdown e ver probabilidades com gráfico |
 
+## Screenshots 📸
+
+<details open>
+<summary><b>Visualizar Telas do Dashboard</b></summary>
+
+#### 🏠 Visão Geral
+![Visão Geral](assets/visao_geral.png)
+
+#### ⚙️ Executar Pipeline
+![Executar Pipeline](assets/pipeline.png)
+
+#### 📊 Métricas do Modelo
+![Métricas do Modelo](assets/metricas.png)
+
+#### 🔮 Predição
+![Predição](assets/predicao.png)
+</details>
+
 ## Tecnologias 🛠️
 
 | Categoria | Tecnologia |
