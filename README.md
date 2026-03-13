@@ -13,6 +13,17 @@ O projeto extrai dados históricos do [FBref](https://fbref.com/), processa feat
 - **Pipeline Unificado** — Um único `main.py` executa scraping → features → treino
 - **Dashboard Streamlit** — Interface web com visão geral, execução do pipeline, métricas e predição
 
+
+## Performance e Métricas 📈
+
+O modelo atual opera com uma **acurácia de 47,9%** em um cenário de **Classificação Multiclasse** (Vitória Mandante, Empate, Vitória Visitante). 
+
+Para interpretar este resultado, é fundamental considerar a base estatística:
+- **Baseline (Acaso):** Em um problema de 3 classes, a chance de acerto aleatório é de apenas **33,3%**.
+- **Desempenho Real:** O modelo apresenta um ganho de **14,6% acima da aleatoriedade**, demonstrando que as *features* de médias móveis capturam padrões reais de consistência e momento das equipes. 
+- **O Desafio do Empate:** Como em qualquer modelo preditivo esportivo, o empate é a classe de maior volatilidade. O foco do projeto é fornecer uma análise probabilística de risco, superando o simples "chute" baseado no favorito.
+
+
 ## Estrutura do Projeto 📁
 
 ```
